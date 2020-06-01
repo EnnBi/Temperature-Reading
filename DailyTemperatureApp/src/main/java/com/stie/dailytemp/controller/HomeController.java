@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,11 @@ public class HomeController {
 	
 	 @Autowired
 	TemperatureDao tempDao;
+	 
+	 @GetMapping("/")
+	 public String home(){
+		 return "Welcome to daily temperature app";
+	 }
 	
 	 @PostMapping("/temperature")
 	 private ResponseEntity<?> saveTemp(@RequestBody Temperature temperature,@RequestAttribute("username") String username) {
