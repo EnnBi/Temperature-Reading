@@ -27,6 +27,7 @@ public class HomeController {
 	 
 	 @GetMapping("/")
 	 public String home(){
+		 System.err.println("hello temp app");
 		 return "Welcome to daily temperature app";
 	 }
 	
