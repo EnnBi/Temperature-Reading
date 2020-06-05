@@ -1,5 +1,9 @@
 package com.stie.dailytemp.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,10 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.stie.dailytemp.customdao.TemperatureCustom;
 import com.stie.dailytemp.dao.AppUserDao;
 import com.stie.dailytemp.dao.TemperatureDao;
 import com.stie.dailytemp.model.AppUser;
+import com.stie.dailytemp.model.Search;
 import com.stie.dailytemp.model.Temperature;
 
 @RestController
@@ -25,10 +32,13 @@ public class HomeController {
 	 @Autowired
 	TemperatureDao tempDao;
 	 
-	 @GetMapping("/")
-	 public String home(){
-		 System.err.println("hello temp app");
-		 return "Welcome to daily temperature app";
+	 @Autowired
+		TemperatureCustom tempCustomDao;
+	 
+	 @GetMapping("/dashboard")
+	 public ModelAndView home(ModelAndView mv){
+		  mv.setViewName("dashboard");
+		 return mv;
 	 }
 	
 	 @PostMapping("/temperature")
@@ -38,5 +48,14 @@ public class HomeController {
 		 	tempDao.save(temperature);
 		 	return ResponseEntity.status(HttpStatus.OK).body(null);
 	}
- 
+	 
+	 
+	 
+	@PostMapping("/temperatures")
+	private ResponseEntity<?> getAll(@RequestBody Search search){
+		List<Temperature> temps = tempCustomDao.getTemperaturesOnSearch(search);
+			return ResponseEntity.status(HttpStatus.OK).body(temps);
+	}
+	 
+
 }

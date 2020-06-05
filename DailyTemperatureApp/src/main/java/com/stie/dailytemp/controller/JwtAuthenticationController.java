@@ -76,7 +76,6 @@ public class JwtAuthenticationController {
 			String password = new BCryptPasswordEncoder().encode(register.getPassword());
 			appUser.setPassword(password);
 			appUserDao.save(appUser);
-			System.err.println("i m good");
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		return ResponseEntity.notFound().build();

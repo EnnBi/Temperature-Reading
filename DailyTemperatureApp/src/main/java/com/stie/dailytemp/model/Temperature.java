@@ -19,7 +19,10 @@ public class Temperature {
 	
 	String shift;
 	
-	String reading;
+	Double reading;
+	
+	String noReading;
+	
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	AppUser appUser;
@@ -45,15 +48,24 @@ public class Temperature {
 	}
 
 	public void setShift(String shift) {
-		this.shift = shift;
+		this.shift = shift.trim();
 	}
 
-	public String getReading() {
+
+	public Double getReading() {
 		return reading;
 	}
 
-	public void setReading(String reading) {
+	public void setReading(Double reading) {
 		this.reading = reading;
+	}
+
+	public String getNoReading() {
+		return noReading;
+	}
+
+	public void setNoReading(String noReading) {
+		this.noReading = noReading.trim();
 	}
 
 	public AppUser getAppUser() {
