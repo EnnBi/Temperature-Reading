@@ -2,12 +2,11 @@ package com.stie.dailytemp.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
@@ -57,5 +56,9 @@ public class HomeController {
 			return ResponseEntity.status(HttpStatus.OK).body(temps);
 	}
 	 
-
+	@ExceptionHandler
+	public void Exception(Exception e){
+		e.printStackTrace();
+	}
+	
 }

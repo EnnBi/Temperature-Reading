@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -79,5 +80,10 @@ public class JwtAuthenticationController {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		return ResponseEntity.notFound().build();
+	}
+	
+	@ExceptionHandler
+	public void Exception(Exception e){
+		e.printStackTrace();
 	}
 }

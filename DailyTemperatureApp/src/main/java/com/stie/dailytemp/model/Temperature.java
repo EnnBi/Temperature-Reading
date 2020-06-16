@@ -9,12 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class Temperature {
 
 	@Id@GeneratedValue(strategy=GenerationType.IDENTITY)
 	long id;
 	
+	@JsonFormat(pattern="dd-MM-yyyy")
 	LocalDate date;
 	
 	String shift;
